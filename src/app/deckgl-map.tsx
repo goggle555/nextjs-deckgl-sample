@@ -79,7 +79,7 @@ export const DeckGLMap = () => {
   ].filter(Boolean);
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-dvw h-dvh">
       {/* 検索UI */}
       <div className="absolute top-5 left-5 z-10 flex gap-2">
         <input
