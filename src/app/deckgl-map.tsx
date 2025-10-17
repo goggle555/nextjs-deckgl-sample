@@ -1,9 +1,9 @@
 "use client";
 
-import { ScatterplotLayer } from "@deck.gl/layers";
 import { DeckGL } from "@deck.gl/react";
 import { Map as MapLibre } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { IconLayer } from "@deck.gl/layers";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -70,14 +70,27 @@ export const DeckGLMap = () => {
 
   const layers = [
     markerPosition &&
-      new ScatterplotLayer({
+      new IconLayer({
         id: "search-marker",
         data: [{ position: markerPosition }],
         getPosition: (d) => d.position,
-        getFillColor: [255, 0, 0, 200],
-        getRadius: 100,
-        radiusMinPixels: 8,
-        radiusMaxPixels: 50,
+        getIcon: () => ({
+          url:
+            "data:image/svg+xml;base64," +
+            btoa(`
+            <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 2C15.163 2 8 9.163 8 18c0 13.5 16 28 16 28s16-14.5 16-28c0-8.837-7.163-16-16-16z" 
+                    fill="#EF4444" stroke="#991B1B" stroke-width="2"/>
+              <circle cx="24" cy="18" r="6" fill="white"/>
+            </svg>
+          `),
+          width: 48,
+          height: 48,
+          anchorY: 48,
+        }),
+        getSize: 48,
+        sizeScale: 1,
+        pickable: true,
       }),
   ].filter(Boolean);
 
