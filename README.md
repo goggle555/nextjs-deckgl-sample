@@ -1,5 +1,7 @@
 # Next.js + deck.gl + MapLibre 地図検索アプリ
 
+<img width="1720" height="927" alt="localhost_3000_ (1)" src="https://github.com/user-attachments/assets/89a5da4c-1a72-4f57-bfee-a948b96162d7" />
+
 Next.js、deck.gl、MapLibreを使用した地図検索アプリケーションです。地名や住所を検索して、地図上に位置を表示できます。
 
 ## 特徴
