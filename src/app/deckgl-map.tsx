@@ -86,7 +86,10 @@ export const DeckGLMap = () => {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+          onKeyDown={(e) => {
+            if (e.nativeEvent.isComposing || e.key !== "Enter") return;
+            handleSearch();
+          }}
           placeholder="地名や住所を入力..."
           disabled={isSearching}
           className={
