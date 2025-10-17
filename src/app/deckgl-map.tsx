@@ -5,13 +5,14 @@ import { DeckGL } from "@deck.gl/react";
 import { Map as MapLibre } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
-interface ViewState {
+type ViewState = {
   longitude: number;
   latitude: number;
   zoom: number;
   transitionDuration?: number;
-}
+};
 
 export const DeckGLMap = () => {
   const [viewState, setViewState] = useState<ViewState>({
@@ -55,11 +56,13 @@ export const DeckGLMap = () => {
         // マーカーを設置
         setMarkerPosition([longitude, latitude]);
       } else {
-        alert("検索結果が見つかりませんでした");
+        toast.error("検索結果が見つかりませんでした");
       }
     } catch (error) {
-      console.error("検索エラー:", error);
-      alert("検索中にエラーが発生しました");
+      if (error instanceof Error) {
+        console.error(error.message);
+      }
+      toast.error("検索中にエラーが発生しました");
     } finally {
       setIsSearching(false);
     }
@@ -80,6 +83,7 @@ export const DeckGLMap = () => {
 
   return (
     <div className="relative w-dvw h-dvh">
+      <Toaster />
       {/* 検索UI */}
       <div className="absolute top-5 left-5 z-10 flex gap-2">
         <input
