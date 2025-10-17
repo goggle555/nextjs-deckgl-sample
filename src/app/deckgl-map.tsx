@@ -89,13 +89,20 @@ export const DeckGLMap = () => {
           onKeyPress={(e) => e.key === "Enter" && handleSearch()}
           placeholder="地名や住所を入力..."
           disabled={isSearching}
-          className="px-4 py-3 text-sm border-none rounded-lg shadow-md w-[300px] outline-none bg-gray-100 disabled:bg-white"
+          className={
+            "px-4 py-3 text-sm border-none rounded-lg shadow-md w-[300px] outline-none " +
+            "bg-gray-100 disabled:bg-white"
+          }
         />
         <button
           type="button"
           onClick={handleSearch}
           disabled={isSearching}
-          className="px-6 py-3 text-sm border-none rounded-lg text-white font-medium shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed enabled:bg-green-500 enabled:hover:bg-green-600 enabled:cursor-pointer"
+          className={
+            "px-6 py-3 text-sm border-none rounded-lg text-white font-medium " +
+            "shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed " +
+            "enabled:bg-green-500 enabled:hover:bg-green-600 enabled:cursor-pointer"
+          }
         >
           {isSearching ? "検索中..." : "検索"}
         </button>
